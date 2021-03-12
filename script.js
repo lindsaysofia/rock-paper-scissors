@@ -21,3 +21,27 @@ function playRound(playerSelection, computerSelection) {
       return 2;      
   }
 }
+
+function game() {
+  let playerScore = 0;
+  let computerScore = 0;
+  let playerSelection;
+  let computerSelection;
+  let roundScore;
+
+  for (let round = 1; round <= 5; round++) {
+    playerSelection = prompt('Rock, Paper, Scissors?', '');
+    computerSelection = computerPlay();
+    roundScore = playRound(playerSelection, computerSelection);
+    playerScore += Math.min(roundScore, 1);
+    computerScore += Math.abs(roundScore - 1);
+    console.log(`
+    *** Round ${round} ***
+    ${playerSelection} vs ${computerSelection}
+    Player Score: ${playerScore}
+    Computer Score: ${computerScore}`);
+  }
+
+  let gameStatement = (playerScore > computerScore) ? 'Player wins!' : (computerScore > playerScore) ? 'Computer wins!' : `It's a tie!`;
+  console.log(gameStatement);
+}
